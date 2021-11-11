@@ -30,6 +30,14 @@ export default function Wallets({...props}) {
   // eslint-disable-next-line no-unused-vars
   const [socket, setSocket ] = useContext(SocketContext)
   
+  const handleSendPeriod = (date1, date2) => {
+    console.log('FILTER - ', date1, date2)
+  }
+
+  const filterPeriodObj = {
+    onSendPeriod: handleSendPeriod,
+  }
+
   const handleClickModal = (e) => {
     e === 0? updateWalletOperationInfo(true) : e === 1? setModalWalletInfo(true) : setModalWallet(true)
   }
@@ -81,6 +89,7 @@ export default function Wallets({...props}) {
                         columns={StaticWallet.walletModal[0].columns}
                         route={'wallet'}
                         pageSize={20}
+                        filterPeriod={filterPeriodObj}
                       />
                     </TbModal>
                     )}/>

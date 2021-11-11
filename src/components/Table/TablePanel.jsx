@@ -1,6 +1,8 @@
 import React from 'react'
-import MaterialTable from 'material-table'
+import MaterialTable, { MTableToolbar } from 'material-table'
 import { FirstPage, LastPage, ChevronRight, ChevronLeft, Add, FilterList, ArrowUpward, SaveAlt, Search, Clear, DeleteOutline } from '@material-ui/icons'
+import { Container, Row } from 'react-bootstrap';
+import { FilterPeriod } from '../FilterPeriod'
 
 import { PatchedPagination } from '../PatchedPagination'
 import { statusList } from '../../util/static'
@@ -22,6 +24,18 @@ export const TablePanel = ({...props}) => {
                     iconInside={<SvgDocuments size={12}/>}
                 />
               </div>
+            ),
+            Toolbar: propsToolbar => (
+              <Container>
+                <Row>
+                  <MTableToolbar {...propsToolbar} />
+                </Row>
+                {props.filterPeriod? (
+                <Row className="mb-1">
+                  <FilterPeriod {...props.filterPeriod}/>
+                </Row>
+                ) : '' }
+              </Container>
             ),
           }}
           data={restProps.data}
